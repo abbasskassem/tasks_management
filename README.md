@@ -7,7 +7,16 @@ Steps: Download the project :
 - This project is dockerized 
   - I have added PHPMyAdmin to allow you view the database structure (http:localhost:8081)
   - Default Server in phpMyAdmin is "mysql" , user: root, password: password
-  - I have attached PostMan collection to view the endpoints and test them
+  - I have attached Postman collection to view the endpoints and test them
+  - Main covered APIs:
+    - User Registration
+    - User Login
+    - User Edit Profile
+    - User task creation  ( With Ability to Set zero or many categories)
+    - User task modification
+    - User Assign Task to Another User ( ticket )
+    - Command to send an email notification to all users who have passed due task 
+    
 - Steps:
 
   - git clone project_repo
