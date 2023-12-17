@@ -14,4 +14,6 @@ Steps: Download the project :
   - docker-compose up --build  ( first time to build the image)
   - go inside the directory and run the following commands:
     - ./setup_project.sh  ( make sure  you run chmod +x to allow execute permission allowed)
-    - make sure to run_flyway command ( ./run_flyway.sh) in case
+    - make sure to run_flyway command ( ./run_flyway.sh) so the tables are populated
+    - copy the .env.example to .env
+  
