@@ -1,0 +1,77 @@
+version: '3'
+
+services:
+  # PHP Service
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+    image: php8.2-fpm-image
+    container_name: demo-php
+    volumes:
+      - ./src:/var/www
+    networks:
+      - app-network
+
+  # Nginx Service
+  nginx:
+    image: nginx:latest
+    container_name: demo-nginx
+    volumes:
+      - ./src:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - php
+    networks:
+      - app-network
+
+  # MySQL Service
+  mysql:
+    image: mysql:8.0
+    container_name: demo-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      command: --bind-address=mysql  # Allow external connections
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+    volumes:
+      - ./mysql/mysql_data:/var/lib/mysql
+      - ./mysql/initial/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # Flyway Service
+  flyway:
+    image: boxfuse/flyway:latest
+    container_name: demo-flyway
+    command: -url=jdbc:mysql://mysql:3306/project -user=root -password=password -locations=filesystem:/var/www/src/flyway/sql  migrate
+    tty: true
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+    volumes:
+      - ./src/flyway/sql:/var/www/src/flyway/sql  # Updated path for Flyway
+  # PHPMyAdmin Service
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: demo-phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - "8081:80"
+    networks:
+      - app-network
+    depends_on:
+      - mysql
+
+volumes:
+  mysql-data: #To make the MySQL Database data persistent ..
+  src:  # For PHP Laravel Source Project
+
+networks:
+  app-network:
+    driver: bridge
