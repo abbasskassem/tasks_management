@@ -1,0 +1,21 @@
+FROM php:8.2-fpm
+
+# Install required extensions
+RUN apt-get update && apt-get install -y wget \
+    libzip-dev \
+    zip \
+    sendmail \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    curl \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install exif \
+    && docker-php-ext-install zip \
+    && docker-php-ext-install pdo_mysql bcmath sockets mysqli exif
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Set working directory
+WORKDIR /var/www
