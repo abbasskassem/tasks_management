@@ -42,8 +42,9 @@ class  UpdateUserAction
 
     public function updatePassword(int $userId, string $newPassword): UserResource
     {
-        $user = new User();
-        $user->password = Hash::make($$newPassword);
+        $user = User::query()
+                    ->findOrFail($userId);
+        $user->password = Hash::make($newPassword);
         $user->saveOrFail();
 
         //NOTIFY ABOUT SUCCESSFULL PASSWORD CHANGE ..

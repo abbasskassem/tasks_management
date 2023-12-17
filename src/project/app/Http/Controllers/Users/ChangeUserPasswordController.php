@@ -42,7 +42,7 @@ class ChangeUserPasswordController extends BaseController
 
         //ALSO we can validate that if its same password then we can return false...
 
-        return ResponseHelper::success($this->updateUserAction->update($userId, $request->input('password')));
+        return ResponseHelper::success($this->updateUserAction->updatePassword($userId, $request->input('password')));
 
     }
 }
