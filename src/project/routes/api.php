@@ -38,6 +38,12 @@ Route::prefix('admin')
                   Route::get('/{id}', \App\Http\Controllers\Users\ViewUserProfileController::class)
                        ->name('view_user_details');
 
+                  Route::put('/{id}', \App\Http\Controllers\Users\UpdateUserController::class)
+                       ->name('update_user_details');
+
+                  Route::put('/{id}/password', \App\Http\Controllers\Users\ChangeUserPasswordController::class)
+                       ->name('modify_user_password');
+
                   //TODO  TIP ; IN crude we can do Route::resource() => will point to show, index, store, update, delete...
                   //FOR DEMO Purpose want to show the HTTP requests...post, put , delete ..patch if needed...etc..
 

@@ -182,6 +182,158 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update User Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "abbass",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "middle_name",
+									"value": "ali",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "last_name",
+									"value": "kassem",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "12345678910",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "abbass.kassemm@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "nationality_id",
+									"value": "LB",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "date_of_birth",
+									"value": "1985-10-09",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/users/1/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"1",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearer_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "abbass",
+									"type": "text"
+								},
+								{
+									"key": "middle_name",
+									"value": "ali",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "kassem",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "abbass.kassemm@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "nationality_id",
+									"value": "LB",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "1985-10-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/admin/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
